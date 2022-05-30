@@ -1,4 +1,5 @@
 plugins {
+	id 'com.github.johnrengelman.shadow' version '7.1.2'
 	id 'org.springframework.boot' version '2.7.0'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
@@ -13,11 +14,18 @@ repositories {
 }
 
 dependencies {
+	shadow 'junit:junit'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+jar {
+	manifest {
+		attributes 'Class-Path': 'ru.kritinidzin.SpringBootEcomarket.ServingWebContentApplication.main'
+	}
 }
 
 tasks.named('test') {

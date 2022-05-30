@@ -1,6 +1,16 @@
 ﻿version: '3.7'
 services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./docker/development/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - jenkins
   jenkins:
+    build:
+      context: ./docker/toolbox
     image: jenkins/jenkins:lts
     ports:
       - 8081:8080
